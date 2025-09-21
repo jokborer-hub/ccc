@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ANIMATION_VARIANTS } from '@/utils/constants';
 import styles from './Vision.module.css';
 
@@ -10,6 +10,21 @@ interface VisionProps {
 }
 
 const Vision: React.FC<VisionProps> = ({ className = '' }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // 视差效果
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
+  
+  // 平滑的弹簧动画
+  const smoothY = useSpring(y, { stiffness: 100, damping: 30 });
+  const smoothScale = useSpring(scale, { stiffness: 100, damping: 30 });
+
   const visionSections = [
     {
       id: '01',
@@ -101,35 +116,48 @@ const Vision: React.FC<VisionProps> = ({ className = '' }) => {
   ];
 
   return (
-    <section className={`${styles.vision} ${className}`} id="vision">
+    <section className={`${styles.vision} ${className}`} id="vision" ref={containerRef}>
       {/* 背景装饰 */}
-      <div className={styles.vision__background}>
-        <div className={styles.vision__backgroundPattern}></div>
+      <motion.div 
+        className={styles.vision__background}
+        style={{ y: smoothY, opacity }}
+      >
+        <motion.div 
+          className={styles.vision__backgroundPattern}
+          style={{ scale: smoothScale }}
+        />
         <div className={styles.vision__backgroundGradient}></div>
-      </div>
+      </motion.div>
 
-      {/* 粒子效果 */}
+      {/* 增强粒子效果 */}
       <div className={styles.vision__particles}>
-        {[...Array(12)].map((_, i) => (
-          <motion.div
-            key={i}
-            className={styles.vision__particle}
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 0.6, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ 
-              duration: 2, 
-              delay: i * 0.2,
-              repeat: Infinity,
-              repeatType: "reverse",
-              repeatDelay: 3
-            }}
-            style={{
-              left: `${10 + (i * 8)}%`,
-              top: `${20 + (i % 3) * 30}%`
-            }}
-          />
-        ))}
+        {[...Array(20)].map((_, i) => {
+          const particleY = useTransform(scrollYProgress, [0, 1], [0, -100 - i * 10]);
+          const particleOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 0.8, 0.8, 0]);
+          
+          return (
+            <motion.div
+              key={i}
+              className={styles.vision__particle}
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 0.6, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ 
+                duration: 2, 
+                delay: i * 0.1,
+                repeat: Infinity,
+                repeatType: "reverse",
+                repeatDelay: 4
+              }}
+              style={{
+                left: `${5 + (i * 4.5)}%`,
+                top: `${10 + (i % 4) * 25}%`,
+                y: particleY,
+                opacity: particleOpacity
+              }}
+            />
+          );
+        })}
       </div>
 
       <div className={styles.vision__container}>
@@ -178,21 +206,73 @@ const Vision: React.FC<VisionProps> = ({ className = '' }) => {
 
         {/* 核心内容区域 */}
         <div className={styles.vision__content}>
-          {visionSections.map((section, index) => (
-            <motion.div
-              key={section.id}
-              className={styles.vision__section}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-            >
+          {visionSections.map((section, index) => {
+            const sectionRef = useRef<HTMLDivElement>(null);
+            const { scrollYProgress: sectionProgress } = useScroll({
+              target: sectionRef,
+              offset: ["start end", "end start"]
+            });
+            
+            const sectionY = useTransform(sectionProgress, [0, 0.5, 1], [100, 0, -100]);
+            const sectionOpacity = useTransform(sectionProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+            const sectionScale = useTransform(sectionProgress, [0, 0.2, 0.8, 1], [0.9, 1, 1, 0.9]);
+            
+            return (
+              <motion.div
+                key={section.id}
+                ref={sectionRef}
+                className={styles.vision__section}
+                style={{
+                  y: sectionY,
+                  opacity: sectionOpacity,
+                  scale: sectionScale
+                }}
+                initial={{ opacity: 0, y: 60, rotateX: -15 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  y: 0, 
+                  rotateX: 0,
+                  transition: {
+                    duration: 0.8,
+                    delay: index * 0.15,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }
+                }}
+                viewport={{ once: true, amount: 0.3 }}
+                whileHover={{
+                  y: -10,
+                  rotateX: 2,
+                  rotateY: 2,
+                  scale: 1.02,
+                  transition: {
+                    duration: 0.3,
+                    ease: "easeOut"
+                  }
+                }}
+              >
               {/* 章节头部 */}
               <div className={styles.vision__sectionHeader}>
                 <motion.div
                   className={styles.vision__sectionNumber}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    y: -3,
+                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ 
+                    scale: 1, 
+                    rotate: 0,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 200, 
+                      damping: 15,
+                      delay: index * 0.1 
+                    }
+                  }}
+                  viewport={{ once: true }}
                 >
                   {section.id}
                 </motion.div>
@@ -200,22 +280,76 @@ const Vision: React.FC<VisionProps> = ({ className = '' }) => {
                 <div className={styles.vision__sectionTitleWrapper}>
                   <motion.div
                     className={styles.vision__sectionIcon}
-                    whileHover={{ scale: 1.2, rotate: 15 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ 
+                      scale: 1.3, 
+                      rotate: 15,
+                      transition: { type: "spring", stiffness: 400 }
+                    }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ 
+                      opacity: 1, 
+                      x: 0,
+                      transition: { delay: index * 0.1 + 0.2 }
+                    }}
+                    viewport={{ once: true }}
                   >
                     {section.icon}
                   </motion.div>
-                  <h3 className={styles.vision__sectionTitle}>{section.title}</h3>
+                  <motion.h3 
+                    className={styles.vision__sectionTitle}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ 
+                      opacity: 1, 
+                      x: 0,
+                      transition: { delay: index * 0.1 + 0.3 }
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    {section.title}
+                  </motion.h3>
                 </div>
 
                 {/* 统计数据 */}
                 <motion.div
                   className={styles.vision__sectionStats}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  whileHover={{ 
+                    scale: 1.08, 
+                    y: -8,
+                    rotateY: 5,
+                    transition: { type: "spring", stiffness: 300 }
+                  }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ 
+                    opacity: 1, 
+                    scale: 1,
+                    transition: { delay: index * 0.1 + 0.4 }
+                  }}
+                  viewport={{ once: true }}
                 >
-                  <div className={styles.vision__statValue}>{section.stats.value}</div>
-                  <div className={styles.vision__statLabel}>{section.stats.label}</div>
+                  <motion.div 
+                    className={styles.vision__statValue}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { delay: index * 0.1 + 0.5 }
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    {section.stats.value}
+                  </motion.div>
+                  <motion.div 
+                    className={styles.vision__statLabel}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { delay: index * 0.1 + 0.6 }
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    {section.stats.label}
+                  </motion.div>
                 </motion.div>
               </div>
 
@@ -236,25 +370,84 @@ const Vision: React.FC<VisionProps> = ({ className = '' }) => {
 
                 {/* 技术架构特性列表 */}
                 {section.features && (
-                  <div className={styles.vision__features}>
+                  <motion.div 
+                    className={styles.vision__features}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                  >
                     {section.features.map((feature, fIndex) => (
                       <motion.div
                         key={fIndex}
                         className={styles.vision__feature}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, scale: 0.8, rotateX: -15 }}
+                        whileInView={{ 
+                          opacity: 1, 
+                          scale: 1, 
+                          rotateX: 0,
+                          transition: { 
+                            duration: 0.6, 
+                            delay: fIndex * 0.15,
+                            ease: [0.25, 0.46, 0.45, 0.94]
+                          }
+                        }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: fIndex * 0.1 }}
-                        whileHover={{ y: -3, scale: 1.02 }}
+                        whileHover={{ 
+                          y: -8, 
+                          scale: 1.03,
+                          rotateX: 2,
+                          rotateY: 2,
+                          transition: { 
+                            duration: 0.3,
+                            ease: "easeOut"
+                          }
+                        }}
                       >
-                        <div className={styles.vision__featureIcon}>·</div>
+                        <motion.div 
+                          className={styles.vision__featureIcon}
+                          initial={{ scale: 0 }}
+                          whileInView={{ 
+                            scale: 1,
+                            transition: { 
+                              delay: fIndex * 0.15 + 0.2,
+                              type: "spring",
+                              stiffness: 400
+                            }
+                          }}
+                          viewport={{ once: true }}
+                        >
+                          ·
+                        </motion.div>
                         <div className={styles.vision__featureContent}>
-                          <h4 className={styles.vision__featureName}>{feature.name}</h4>
-                          <p className={styles.vision__featureDesc}>{feature.desc}</p>
+                          <motion.h4 
+                            className={styles.vision__featureName}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ 
+                              opacity: 1, 
+                              x: 0,
+                              transition: { delay: fIndex * 0.15 + 0.3 }
+                            }}
+                            viewport={{ once: true }}
+                          >
+                            {feature.name}
+                          </motion.h4>
+                          <motion.p 
+                            className={styles.vision__featureDesc}
+                            initial={{ opacity: 0, x: -15 }}
+                            whileInView={{ 
+                              opacity: 1, 
+                              x: 0,
+                              transition: { delay: fIndex * 0.15 + 0.4 }
+                            }}
+                            viewport={{ once: true }}
+                          >
+                            {feature.desc}
+                          </motion.p>
                         </div>
                       </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* 亮点标签 */}
@@ -275,14 +468,22 @@ const Vision: React.FC<VisionProps> = ({ className = '' }) => {
               {index < visionSections.length - 1 && (
                 <motion.div
                   className={styles.vision__connector}
-                  initial={{ scaleY: 0 }}
-                  whileInView={{ scaleY: 1 }}
+                  initial={{ scaleY: 0, opacity: 0 }}
+                  whileInView={{ 
+                    scaleY: 1, 
+                    opacity: 1,
+                    transition: { 
+                      duration: 1.2, 
+                      delay: 0.8,
+                      ease: [0.25, 0.46, 0.45, 0.94]
+                    }
+                  }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.5 }}
                 />
               )}
             </motion.div>
-          ))}
+          );
+          })}
         </div>
 
         {/* 底部总结 */}
