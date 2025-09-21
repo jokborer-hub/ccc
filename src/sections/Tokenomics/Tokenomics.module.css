@@ -1,0 +1,1759 @@
+/* 浮动Banner装饰效果 */
+.tokenomics__floatingBanner1,
+.tokenomics__floatingBanner2 {
+  position: absolute;
+  width: 180px;
+  height: 280px;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(245, 158, 11, 0.3);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(245, 158, 11, 0.4);
+  animation: tokenomicsBannerFloat 20s ease-in-out infinite;
+}
+
+.tokenomics__floatingBanner1 {
+  top: 10%;
+  left: -30px;
+  transform: rotate(-10deg);
+}
+
+.tokenomics__floatingBanner2 {
+  top: 70%;
+  right: -30px;
+  transform: rotate(12deg);
+}
+
+.tokenomics__floatingBanner1 img,
+.tokenomics__floatingBanner2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.8) contrast(1.1) saturate(1.2);
+  transition: all 0.8s ease;
+}
+
+.tokenomics:hover .tokenomics__floatingBanner1,
+.tokenomics:hover .tokenomics__floatingBanner2 {
+  transform: scale(1.05);
+}
+
+.tokenomics:hover .tokenomics__floatingBanner1 img,
+.tokenomics:hover .tokenomics__floatingBanner2 img {
+  filter: brightness(0.9) contrast(1.2) saturate(1.3);
+}
+
+/* 金币装饰效果 */
+.tokenomics__coinDecorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tokenomics__coin {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.4;
+  filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.5));
+  animation: coinFloat 6s ease-in-out infinite;
+}
+
+/* Banner浮动动画 */
+@keyframes tokenomicsBannerFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(-10deg);
+  }
+  25% { 
+    transform: translateY(-15px) rotate(-8deg);
+  }
+  50% { 
+    transform: translateY(10px) rotate(-12deg);
+  }
+  75% { 
+    transform: translateY(-8px) rotate(-9deg);
+  }
+}
+
+/* 金币浮动动画 */
+@keyframes coinFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  33% { 
+    transform: translateY(-20px) rotate(120deg) scale(1.1);
+  }
+  66% { 
+    transform: translateY(15px) rotate(240deg) scale(0.9);
+  }
+}
+
+/* 发光边框效果 */
+.tokenomics__floatingBanner1::before,
+.tokenomics__floatingBanner2::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, 
+    rgba(245, 158, 11, 0.6) 0%, 
+    rgba(251, 191, 36, 0.8) 25%,
+    rgba(245, 158, 11, 0.6) 50%,
+    rgba(251, 191, 36, 0.8) 75%,
+    rgba(245, 158, 11, 0.6) 100%
+  );
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0.7;
+  animation: tokenomicsGlow 3s ease-in-out infinite;
+}
+
+@keyframes tokenomicsGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; }
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .tokenomics__floatingBanner1,
+  .tokenomics__floatingBanner2 {
+    width: 150px;
+    height: 230px;
+  }
+  
+  .tokenomics__coin {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tokenomics__floatingBanner1,
+  .tokenomics__floatingBanner2 {
+    width: 120px;
+    height: 180px;
+    opacity: 0.5;
+  }
+  
+  .tokenomics__coin {
+    font-size: 1.2rem;
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 480px) {
+  .tokenomics__floatingBanner1,
+  .tokenomics__floatingBanner2 {
+    display: none;
+  }
+  
+  .tokenomics__coinDecorations {
+    display: none;
+  }
+}
+
+/* Tokenomics Section Styles - Enhanced Design with Pie Chart */
+
+.tokenomics {
+  padding: 8rem 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 28, 0.95) 0%,
+    rgba(15, 23, 42, 0.9) 30%,
+    rgba(30, 41, 59, 0.85) 70%,
+    rgba(10, 15, 28, 0.95) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Grid Background */
+.tokenomics::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(245, 158, 11, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridMove 20s linear infinite;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+
+.tokenomics__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Enhanced Section Header */
+.tokenomics__header {
+  text-align: center;
+  margin-bottom: 6rem;
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tokenomics__title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 30%, #D97706 70%, #B45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Playfair Display', serif;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+.tokenomics__title::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 4px;
+  background: linear-gradient(90deg, #F59E0B, #D97706);
+  border-radius: 2px;
+}
+
+.tokenomics__subtitle {
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 500;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Main Content Grid Layout */
+.tokenomics__mainContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  margin-bottom: 6rem;
+  align-items: start;
+}
+
+/* Chart Section */
+.tokenomics__chartSection {
+  animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+.tokenomics__chartContainer {
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(15, 23, 42, 0.6));
+  border: 3px solid rgba(245, 158, 11, 0.5);
+  border-radius: 2.5rem;
+  padding: 3rem;
+  backdrop-filter: blur(25px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(245, 158, 11, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+}
+
+.tokenomics__chartContainer:hover {
+  transform: translateY(-8px);
+  border-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(245, 158, 11, 0.6),
+    0 0 120px rgba(245, 158, 11, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.15);
+}
+
+.tokenomics__chartContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.15), transparent);
+  animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.tokenomics__chartTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #FCD34D;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 2px 8px rgba(245, 158, 11, 0.5);
+  position: relative;
+}
+
+.tokenomics__chartTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #F59E0B, #D97706);
+  border-radius: 2px;
+}
+
+/* Legend Styles */
+.tokenomics__legend {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.tokenomics__legendItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tokenomics__legendItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.tokenomics__legendItem:hover::before {
+  left: 100%;
+}
+
+.tokenomics__legendItem:hover {
+  transform: translateX(8px);
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tokenomics__legendColor {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.tokenomics__legendColor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.3;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.1; }
+}
+
+.tokenomics__legendContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.tokenomics__legendLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tokenomics__legendValue {
+  font-size: 1.125rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Info Section */
+.tokenomics__infoSection {
+  animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+}
+
+/* Token Info Cards */
+.tokenomics__tokenInfo {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.tokenomics__infoCard {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.7), rgba(15, 23, 42, 0.5));
+  border: 2px solid rgba(245, 158, 11, 0.3);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tokenomics__infoCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 1.5rem;
+}
+
+.tokenomics__infoCard:hover::before {
+  opacity: 1;
+}
+
+.tokenomics__infoCard:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.tokenomics__infoIcon {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 12px rgba(245, 158, 11, 0.4));
+}
+
+.tokenomics__infoContent {
+  flex: 1;
+}
+
+.tokenomics__infoLabel {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tokenomics__infoValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FCD34D;
+  text-shadow: 0 2px 8px rgba(245, 158, 11, 0.5);
+}
+
+/* Features Grid */
+.tokenomics__featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.tokenomics__featureCard {
+  padding: 2rem 1.5rem;
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.6), rgba(15, 23, 42, 0.4));
+  border: 2px solid rgba(245, 158, 11, 0.3);
+  border-radius: 1.5rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+}
+
+.tokenomics__featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 1.5rem;
+}
+
+.tokenomics__featureCard:hover::before {
+  opacity: 1;
+}
+
+.tokenomics__featureCard:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.tokenomics__featureIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(245, 158, 11, 0.4));
+}
+
+.tokenomics__featureContent {
+  position: relative;
+  z-index: 1;
+}
+
+.tokenomics__featureTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FCD34D;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 8px rgba(245, 158, 11, 0.5);
+}
+
+.tokenomics__featureDescription {
+  font-size: 0.875rem;
+  color: #FFFFFF;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tokenomics__featurePercentage {
+  font-size: 1.125rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Tax Section */
+.tokenomics__taxSection {
+  margin-bottom: 6rem;
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+}
+
+.tokenomics__sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #FCD34D;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 2px 8px rgba(245, 158, 11, 0.5);
+  position: relative;
+}
+
+.tokenomics__sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #F59E0B, #D97706);
+  border-radius: 2px;
+}
+
+.tokenomics__taxGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+}
+
+.tokenomics__taxCard {
+  padding: 3rem 2.5rem;
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(15, 23, 42, 0.6));
+  border: 3px solid rgba(245, 158, 11, 0.4);
+  border-radius: 2rem;
+  backdrop-filter: blur(25px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(245, 158, 11, 0.3);
+}
+
+.tokenomics__taxCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 2rem;
+}
+
+.tokenomics__taxCard:hover::before {
+  opacity: 1;
+}
+
+.tokenomics__taxCard:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.6),
+    0 0 50px rgba(245, 158, 11, 0.5),
+    0 0 100px rgba(245, 158, 11, 0.3);
+}
+
+.tokenomics__taxHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(245, 158, 11, 0.2);
+}
+
+.tokenomics__taxIcon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 4px 12px currentColor);
+}
+
+.tokenomics__taxTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  flex: 1;
+  margin: 0 1rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.tokenomics__taxPercentage {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 2px 8px currentColor;
+}
+
+.tokenomics__taxDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tokenomics__taxDetail {
+  font-size: 1.125rem;
+  color: #FFFFFF;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+
+/* Statistics Section */
+.tokenomics__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(15, 23, 42, 0.6));
+  border: 3px solid rgba(245, 158, 11, 0.5);
+  border-radius: 2.5rem;
+  padding: 4rem 3rem;
+  backdrop-filter: blur(25px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(245, 158, 11, 0.4);
+}
+
+.tokenomics__stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.15), transparent);
+  animation: shimmer 4s infinite;
+}
+
+.tokenomics__stat {
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tokenomics__stat:nth-child(1) { animation-delay: 0.8s; }
+.tokenomics__stat:nth-child(2) { animation-delay: 1s; }
+.tokenomics__stat:nth-child(3) { animation-delay: 1.2s; }
+
+.tokenomics__statNumber {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+  position: relative;
+}
+
+.tokenomics__statNumber::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #F59E0B, #D97706);
+  border-radius: 2px;
+}
+
+.tokenomics__statLabel {
+  color: #FFFFFF;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.tokenomics__statDesc {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 私募详情卡片 - 重新设计 */
+.tokenomics__privateSaleCard {
+  position: relative;
+  margin-top: 5rem;
+  background: linear-gradient(145deg, #0a0a0a 0%, #1a1a2e 30%, #16213e 70%, #0f3460 100%);
+  border-radius: 32px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(245, 158, 11, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tokenomics__privateSaleCard:hover {
+  transform: translateY(-16px) rotateX(8deg);
+  box-shadow: 
+    0 50px 100px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(245, 158, 11, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 120px rgba(245, 158, 11, 0.4);
+}
+
+/* 背景装饰球体 */
+.tokenomics__privateSaleBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tokenomics__privateSaleOrb1,
+.tokenomics__privateSaleOrb2,
+.tokenomics__privateSaleOrb3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.7;
+  animation: float 8s ease-in-out infinite;
+}
+
+.tokenomics__privateSaleOrb1 {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, #F59E0B 0%, transparent 70%);
+  top: -75px;
+  right: -75px;
+  animation-delay: 0s;
+}
+
+.tokenomics__privateSaleOrb2 {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #FCD34D 0%, transparent 70%);
+  bottom: -50px;
+  left: -50px;
+  animation-delay: 3s;
+}
+
+.tokenomics__privateSaleOrb3 {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #D97706 0%, transparent 70%);
+  top: 60%;
+  right: -60px;
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-25px) rotate(90deg); }
+  50% { transform: translateY(15px) rotate(180deg); }
+  75% { transform: translateY(-10px) rotate(270deg); }
+}
+
+/* 标题区域 */
+.tokenomics__privateSaleHeader {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 3rem 1.5rem 3rem;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.08) 100%);
+  backdrop-filter: blur(30px);
+  border-bottom: 2px solid rgba(245, 158, 11, 0.2);
+}
+
+.tokenomics__privateSaleIconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(145deg, #F59E0B, #D97706);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(245, 158, 11, 0.5);
+}
+
+.tokenomics__privateSaleIcon {
+  font-size: 2.5rem;
+  z-index: 2;
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.tokenomics__privateSaleIconGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.5) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.15) rotate(180deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.4; }
+}
+
+.tokenomics__privateSaleTitleWrapper {
+  flex: 1;
+}
+
+.tokenomics__privateSaleTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 0 40px rgba(245, 158, 11, 0.4);
+}
+
+.tokenomics__privateSaleSubtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* 内容网格 */
+.tokenomics__privateSaleGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  padding: 3rem;
+}
+
+.tokenomics__privateSaleItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 2px solid rgba(245, 158, 11, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(30px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.tokenomics__privateSaleItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.15), transparent);
+  transition: left 0.8s ease;
+}
+
+.tokenomics__privateSaleItem:hover::before {
+  left: 100%;
+}
+
+.tokenomics__privateSaleItem:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 12px 40px rgba(245, 158, 11, 0.3);
+  transform: translateY(-5px);
+}
+
+.tokenomics__privateSaleItemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  font-size: 2rem;
+  background: linear-gradient(145deg, rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.2));
+  border: 2px solid rgba(245, 158, 11, 0.4);
+  border-radius: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+}
+
+.tokenomics__privateSaleItemContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tokenomics__privateSaleLabel {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.25rem;
+}
+
+.tokenomics__privateSaleValue {
+  font-size: 1.4rem;
+  color: #ffffff;
+  font-weight: 800;
+  background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.tokenomics__privateSaleSubtext {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.tokenomics__privateSaleProgress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+
+.tokenomics__privateSaleProgressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #FCD34D, #F59E0B);
+  border-radius: 3px;
+  animation: progressFill 2.5s ease-out;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+}
+
+/* 特殊样式 - 每个项目不同的颜色主题 */
+.tokenomics__privateSaleItem1 .tokenomics__privateSaleItemIcon {
+  background: linear-gradient(145deg, rgba(255, 193, 7, 0.3), rgba(255, 152, 0, 0.2));
+  border-color: rgba(255, 193, 7, 0.4);
+}
+
+.tokenomics__privateSaleItem2 .tokenomics__privateSaleItemIcon {
+  background: linear-gradient(145deg, rgba(156, 39, 176, 0.3), rgba(233, 30, 99, 0.2));
+  border-color: rgba(156, 39, 176, 0.4);
+}
+
+.tokenomics__privateSaleItem3 .tokenomics__privateSaleItemIcon {
+  background: linear-gradient(145deg, rgba(76, 175, 80, 0.3), rgba(139, 195, 74, 0.2));
+  border-color: rgba(76, 175, 80, 0.4);
+}
+
+.tokenomics__privateSaleItem4 .tokenomics__privateSaleItemIcon {
+  background: linear-gradient(145deg, rgba(255, 87, 34, 0.3), rgba(244, 67, 54, 0.2));
+  border-color: rgba(255, 87, 34, 0.4);
+}
+
+/* 底部装饰 */
+.tokenomics__privateSaleFooter {
+  position: relative;
+  z-index: 2;
+  padding: 0 3rem 3rem 3rem;
+}
+
+.tokenomics__privateSaleFooterLine {
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #FCD34D, #F59E0B, #D97706, transparent);
+  border-radius: 2px;
+  transform-origin: left;
+  animation: lineGrow 2s ease-out;
+}
+
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* LP分红奖励卡片样式 */
+.tokenomics__lpRewardCard {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(16, 185, 129, 0.1) 0%, 
+    rgba(5, 150, 105, 0.15) 50%, 
+    rgba(4, 120, 87, 0.1) 100%);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 25px 50px rgba(16, 185, 129, 0.1),
+    0 0 60px rgba(16, 185, 129, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tokenomics__lpRewardCard:hover {
+  transform: translateY(-8px);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 
+    0 35px 70px rgba(16, 185, 129, 0.2),
+    0 0 80px rgba(16, 185, 129, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* LP分红卡片背景装饰 */
+.tokenomics__lpRewardBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.tokenomics__lpRewardOrb1,
+.tokenomics__lpRewardOrb2,
+.tokenomics__lpRewardOrb3 {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+  animation: lpRewardOrbFloat 15s ease-in-out infinite;
+}
+
+.tokenomics__lpRewardOrb1 {
+  width: 200px;
+  height: 200px;
+  top: -100px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.tokenomics__lpRewardOrb2 {
+  width: 150px;
+  height: 150px;
+  bottom: -75px;
+  left: -75px;
+  animation-delay: 5s;
+}
+
+.tokenomics__lpRewardOrb3 {
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 10s;
+}
+
+@keyframes lpRewardOrbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  33% { transform: translate(20px, -20px) scale(1.1); opacity: 0.5; }
+  66% { transform: translate(-15px, 15px) scale(0.9); opacity: 0.4; }
+}
+
+/* LP分红标题区域 */
+.tokenomics__lpRewardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.tokenomics__lpRewardIconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.3));
+  border-radius: 20px;
+  border: 2px solid rgba(16, 185, 129, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.tokenomics__lpRewardIcon {
+  font-size: 2.5rem;
+  z-index: 2;
+  animation: lpRewardIconPulse 3s ease-in-out infinite;
+}
+
+.tokenomics__lpRewardIconGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: lpRewardIconGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes lpRewardIconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes lpRewardIconGlow {
+  0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.tokenomics__lpRewardTitleWrapper h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #10B981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.tokenomics__lpRewardSubtitle {
+  font-size: 1rem;
+  color: rgba(16, 185, 129, 0.8);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* LP分红内容区域 */
+.tokenomics__lpRewardContent {
+  position: relative;
+  z-index: 2;
+}
+
+.tokenomics__lpRewardMainInfo {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));
+  border-radius: 16px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.tokenomics__lpRewardPercentage {
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #10B981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+}
+
+.tokenomics__lpRewardDescription {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* LP分红特点网格 */
+.tokenomics__lpRewardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.tokenomics__lpRewardFeature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(5, 150, 105, 0.05));
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tokenomics__lpRewardFeature:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.1));
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-3px);
+}
+
+.tokenomics__lpRewardFeatureIcon {
+  font-size: 1.8rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.tokenomics__lpRewardFeatureContent h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #10B981;
+  margin: 0 0 0.5rem 0;
+}
+
+.tokenomics__lpRewardFeatureContent p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 分红流程说明 */
+.tokenomics__lpRewardProcess {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.tokenomics__lpRewardProcessTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #10B981;
+  text-align: center;
+  margin: 0 0 1.5rem 0;
+}
+
+.tokenomics__lpRewardSteps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tokenomics__lpRewardStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 120px;
+}
+
+.tokenomics__lpRewardStepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tokenomics__lpRewardStepText {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+.tokenomics__lpRewardArrow {
+  font-size: 1.5rem;
+  color: #10B981;
+  font-weight: bold;
+}
+
+/* LP分红底部装饰 */
+.tokenomics__lpRewardFooter {
+  margin-top: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.tokenomics__lpRewardFooterLine {
+  height: 4px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #10B981 20%, 
+    #059669 50%, 
+    #10B981 80%, 
+    transparent 100%);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tokenomics__lpRewardFooterLine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: lpRewardShine 3s ease-in-out infinite;
+}
+
+@keyframes lpRewardShine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .tokenomics__privateSaleCard {
+    margin-top: 4rem;
+  }
+  
+  .tokenomics__privateSaleHeader {
+    padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+    gap: 1.5rem;
+  }
+  
+  .tokenomics__privateSaleIconWrapper {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .tokenomics__privateSaleIcon {
+    font-size: 2rem;
+  }
+  
+  .tokenomics__privateSaleTitle {
+    font-size: 2rem;
+  }
+  
+  .tokenomics__privateSaleGrid {
+    gap: 1.5rem;
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tokenomics__privateSaleCard {
+    margin-top: 3rem;
+  }
+  
+  .tokenomics__privateSaleHeader {
+    padding: 2rem 2rem 1rem 2rem;
+    gap: 1rem;
+  }
+  
+  .tokenomics__privateSaleIconWrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .tokenomics__privateSaleIcon {
+    font-size: 1.8rem;
+  }
+  
+  .tokenomics__privateSaleTitle {
+    font-size: 1.8rem;
+  }
+  
+  .tokenomics__privateSaleGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 2rem;
+  }
+  
+  .tokenomics__privateSaleItem {
+    padding: 1.5rem;
+  }
+  
+  .tokenomics__privateSaleItemIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+  
+  .tokenomics__privateSaleFooter {
+    padding: 0 2rem 2rem 2rem;
+  }
+  
+  .tokenomics__lpRewardCard {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .tokenomics__lpRewardHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .tokenomics__lpRewardIconWrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .tokenomics__lpRewardIcon {
+    font-size: 2rem;
+  }
+  
+  .tokenomics__lpRewardTitleWrapper h3 {
+    font-size: 1.5rem;
+  }
+  
+  .tokenomics__lpRewardPercentage {
+    font-size: 3rem;
+  }
+  
+  .tokenomics__lpRewardDescription {
+    font-size: 1rem;
+  }
+  
+  .tokenomics__lpRewardGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .tokenomics__lpRewardSteps {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .tokenomics__lpRewardArrow {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .tokenomics__privateSaleHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+  }
+  
+  .tokenomics__privateSaleGrid {
+    padding: 1.5rem;
+  }
+  
+  .tokenomics__privateSaleItem {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+  
+  .tokenomics__privateSaleItemContent {
+    align-items: center;
+  }
+  
+  .tokenomics__privateSaleFooter {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .tokenomics__lpRewardCard {
+    padding: 1rem;
+  }
+  
+  .tokenomics__lpRewardMainInfo,
+  .tokenomics__lpRewardProcess {
+    padding: 1.5rem;
+  }
+  
+  .tokenomics__lpRewardPercentage {
+    font-size: 2.5rem;
+  }
+  
+  .tokenomics__lpRewardFeature {
+    padding: 1rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .tokenomics__mainContent {
+    gap: 4rem;
+  }
+  
+  .tokenomics__title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tokenomics {
+    padding: 6rem 0;
+  }
+  
+  .tokenomics__container {
+    padding: 0 1.5rem;
+  }
+  
+  .tokenomics__mainContent {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .tokenomics__title {
+    font-size: 3rem;
+  }
+  
+  .tokenomics__featuresGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tokenomics__taxGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .tokenomics {
+    padding: 4rem 0;
+  }
+  
+  .tokenomics__container {
+    padding: 0 1rem;
+  }
+  
+  .tokenomics__header {
+    margin-bottom: 4rem;
+  }
+  
+  .tokenomics__title {
+    font-size: 2.5rem;
+  }
+  
+  .tokenomics__subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .tokenomics__mainContent {
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  
+  .tokenomics__chartContainer {
+    padding: 2rem;
+  }
+  
+  .tokenomics__taxCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .tokenomics__taxHeader {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .tokenomics__taxTitle {
+    margin: 0;
+  }
+  
+  .tokenomics__stats {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 2rem;
+  }
+  
+  .tokenomics__statNumber {
+    font-size: 3rem;
+  }
+  
+  .tokenomics__privateSaleCard {
+    margin-top: 3rem;
+    padding: 2rem 1.5rem;
+  }
+  
+  .tokenomics__privateSaleContent {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .tokenomics__privateSaleItem {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tokenomics__container {
+    padding: 0 1rem;
+  }
+  
+  .tokenomics__title {
+    font-size: 2rem;
+  }
+  
+  .tokenomics__subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .tokenomics__chartContainer {
+    padding: 1.5rem;
+  }
+  
+  .tokenomics__taxCard {
+    padding: 1.5rem 1rem;
+  }
+  
+  .tokenomics__stats {
+    padding: 2rem 1rem;
+  }
+  
+  .tokenomics__statNumber {
+    font-size: 2.5rem;
+  }
+  
+  .tokenomics__coinDecorations {
+    display: none;
+  }
+  
+  .tokenomics__coin {
+    font-size: 1rem;
+  }
+}

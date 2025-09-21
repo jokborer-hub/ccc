@@ -1,0 +1,244 @@
+/* Mobile-specific optimizations */
+
+/* Touch-friendly interactions */
+@media (max-width: 768px) {
+  /* Increase touch targets */
+  button, 
+  a[role="button"],
+  .navigation__mobile-link,
+  .hero__cta,
+  .contact__social_card {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Improve touch feedback */
+  button:active,
+  a[role="button"]:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  /* Optimize scroll performance */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent zoom on input focus */
+  input[type="email"],
+  input[type="text"],
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Optimize animations for mobile */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Mobile-specific spacing */
+  .hero__container,
+  .about__container,
+  .tokenomics__container,
+  .alphanode__container,
+  .roadmap__container,
+  .contact__container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Optimize text readability */
+  .hero__title,
+  .about__title,
+  .tokenomics__title,
+  .alphanode__title,
+  .roadmap__title,
+  .contact__title {
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  /* Mobile-specific card spacing */
+  .about__featureCard,
+  .tokenomics__featureCard,
+  .alphanode__highlightCard {
+    margin-bottom: 1rem;
+  }
+
+  /* Optimize mobile navigation */
+  .navigation__mobile-menu {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Mobile-specific hover states (remove hover effects) */
+  .about__featureCard:hover,
+  .tokenomics__featureCard:hover,
+  .alphanode__highlightCard:hover {
+    transform: none;
+  }
+
+  /* Add tap highlights for better UX */
+  .hero__cta,
+  .contact__social_card,
+  .roadmap__cta_button {
+    -webkit-tap-highlight-color: rgba(245, 158, 11, 0.3);
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  /* Further reduce spacing */
+  .hero,
+  .about,
+  .tokenomics,
+  .alphanode,
+  .roadmap,
+  .contact {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Optimize typography for small screens */
+  .hero__title {
+    font-size: 1.875rem;
+    line-height: 1.1;
+  }
+
+  .about__title,
+  .tokenomics__title,
+  .alphanode__title,
+  .roadmap__title,
+  .contact__title {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  /* Optimize card layouts */
+  .about__featureCard,
+  .tokenomics__featureCard,
+  .alphanode__highlightCard {
+    padding: 1.5rem;
+  }
+
+  /* Optimize stats display */
+  .hero__stats,
+  .about__heroStats,
+  .tokenomics__stats,
+  .alphanode__stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Optimize button sizes */
+  .hero__cta,
+  .contact__cta_button,
+  .roadmap__cta_button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    min-height: 500px;
+  }
+
+  .hero__content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero__title {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Optimize images and icons for retina displays */
+  .hero__background,
+  .about__heroCircle,
+  .tokenomics__chartContainer,
+  .alphanode__investmentArea,
+  .roadmap__gridItem {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Dark mode mobile optimizations */
+@media (max-width: 768px) {
+  .dark .navigation__mobile-menu {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+
+  .dark .hero__background::after {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.9) 0%,
+      rgba(30, 41, 59, 0.8) 100%
+    );
+  }
+}
+
+/* Performance optimizations */
+@media (max-width: 768px) {
+  /* Reduce complex animations on mobile */
+  .hero__floatingElements,
+  .about__heroOrbit,
+  .tokenomics__background,
+  .alphanode__background {
+    display: none;
+  }
+
+  /* Optimize transforms for better performance */
+  .about__featureCard,
+  .tokenomics__featureCard,
+  .alphanode__highlightCard {
+    will-change: auto;
+  }
+
+  /* Reduce blur effects on mobile for better performance */
+  .navigation,
+  .hero__background::after {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+  /* Improve focus indicators */
+  button:focus,
+  a:focus {
+    outline: 3px solid rgba(245, 158, 11, 0.8);
+    outline-offset: 2px;
+  }
+
+  /* Ensure sufficient color contrast */
+  .hero__subtitle,
+  .about__subtitle,
+  .tokenomics__subtitle {
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  /* Improve readability */
+  p, li, span {
+    line-height: 1.6;
+  }
+}
