@@ -168,7 +168,7 @@ const Hero: React.FC<HeroProps> = ({ className = '' }) => {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              立即购买
+              <span className={styles.hero__ctaText}>立即购买</span>
               <motion.span
                 className={styles.hero__ctaIcon}
                 initial={{ x: 0 }}
@@ -185,7 +185,7 @@ const Hero: React.FC<HeroProps> = ({ className = '' }) => {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              白皮书
+              <span className={styles.hero__ctaText}>白皮书</span>
             </motion.button>
           </motion.div>
         </motion.div>

@@ -187,6 +187,54 @@
   animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* 容器样式 */
+.hero__container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+/* 按钮基础样式 */
+.hero__ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 50%, #B45309 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 25px -5px rgba(245, 158, 11, 0.4),
+    0 4px 10px -3px rgba(245, 158, 11, 0.2),
+    0 0 20px rgba(245, 158, 11, 0.3);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 主标题容器 */
+.hero__titleMain {
+  display: inline-block;
+}
+
+/* 滚动箭头 */
+.hero__scrollArrow {
+  font-size: 1.5rem;
+  animation: bounceArrow 2s infinite;
+}
+
 /* Enhanced Title with glow effect */
 .hero__title {
   font-size: 4rem;
@@ -1086,65 +1134,200 @@
   .hero__description {
     font-size: 1.125rem;
   }
+  
+  .hero__stats {
+    gap: 2rem;
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .hero__statNumber {
+    font-size: 3rem;
+  }
 }
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 600px;
-    margin-top: -72px;
-    padding-top: 72px;
+    min-height: 100vh;
+    height: auto;
+    margin-top: -80px;
+    padding-top: 80px;
+    padding-bottom: 2rem;
   }
   
   .hero__content {
-    padding: 0 1.5rem;
+    padding: 2rem 1.5rem 1rem;
+    max-width: 100%;
   }
   
   .hero__title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 1.5rem;
+    line-height: 1.2;
   }
   
   .hero__subtitle {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     margin-bottom: 2rem;
+    line-height: 1.4;
+    max-width: 100%;
   }
   
   .hero__description {
     font-size: 1rem;
     margin-bottom: 2.5rem;
+    line-height: 1.6;
   }
   
-  .hero__actions {
+  /* 修复CTA按钮布局 */
+  .hero__cta {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-  }
-  
-  .hero__cta {
     width: 100%;
-    max-width: 300px;
-    padding: 1rem 2rem;
+    margin-bottom: 2rem;
   }
   
-  .hero__scroll {
-    bottom: 2rem;
+  .hero__ctaButton,
+  .hero__ctaPrimary,
+  .hero__ctaSecondary {
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    justify-content: center;
+  }
+  
+  /* 修复统计数据布局 */
+  .hero__stats {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+    margin-top: 2rem;
+    width: calc(100% - 3rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero__stat {
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .hero__statNumber {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero__statLabel {
+    font-size: 0.9rem;
+  }
+  
+  .hero__statDivider {
+    display: none;
+  }
+  
+  /* 隐藏浮动元素在移动端 */
+  .hero__floatingElement1,
+  .hero__floatingElement2,
+  .hero__floatingElement3 {
+    display: none;
+  }
+  
+  .hero__scrollIndicator {
+    bottom: 1.5rem;
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
+  .hero {
+    min-height: 100vh;
+    padding-top: 70px;
+    margin-top: -70px;
+  }
+  
   .hero__content {
-    padding: 0 1rem;
+    padding: 1.5rem 1rem 1rem;
   }
   
   .hero__title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
   }
   
   .hero__subtitle {
-    font-size: 1.125rem;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
   }
   
   .hero__description {
     font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+  }
+  
+  .hero__cta {
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero__ctaButton,
+  .hero__ctaPrimary,
+  .hero__ctaSecondary {
+    max-width: 260px;
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .hero__stats {
+    padding: 1.5rem 1rem;
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .hero__stat {
+    padding: 0.8rem;
+  }
+  
+  .hero__statNumber {
+    font-size: 2rem;
+  }
+  
+  .hero__statLabel {
+    font-size: 0.85rem;
+  }
+  
+  .hero__scrollIndicator {
+    bottom: 1rem;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 360px) {
+  .hero__title {
+    font-size: 1.8rem;
+  }
+  
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero__ctaButton,
+  .hero__ctaPrimary,
+  .hero__ctaSecondary {
+    max-width: 240px;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .hero__stats {
+    padding: 1rem 0.5rem;
+  }
+  
+  .hero__statNumber {
+    font-size: 1.8rem;
   }
 }
