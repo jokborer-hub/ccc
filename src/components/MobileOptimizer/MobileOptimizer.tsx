@@ -127,8 +127,8 @@ const MobileOptimizer: React.FC<MobileOptimizerProps> = ({ children }) => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Performance Monitor */}
-      {process.env.NODE_ENV === 'development' && (
+      {/* Mobile Performance Monitor - 隐藏在生产环境 */}
+      {false && process.env.NODE_ENV === 'development' && (
         <div className={styles.performanceMonitor}>
           <div className={styles.performanceInfo}>
             📱 Mobile Mode | {isLandscape ? '🔄 Landscape' : '📱 Portrait'}
