@@ -18,6 +18,7 @@ export const SOCIAL_LINKS = {
 // Navigation items
 export const NAV_ITEMS = [
   { href: '#about', label: 'About' },
+  { href: '#vision', label: 'Vision' },
   { href: '#alphanode', label: 'Alphanode' },
   { href: '#tokenomics', label: 'Tokenomics' },
   { href: '#roadmap', label: 'Roadmap' },

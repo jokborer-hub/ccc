@@ -160,36 +160,56 @@ const Community: React.FC = () => {
             <h3 className={styles.community__socialTitle}>官方社区</h3>
             <div className={styles.community__socialGrid}>
               {communityData.socialLinks.map((link, index) => (
-                <motion.div
-                  key={`social-${index}`}
-                  className={styles.community__socialCard}
-                  variants={ANIMATION_VARIANTS.scaleIn}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <div className={styles.community__socialIconWrapper}>
-                    {getIcon(link.icon)}
-                  </div>
-                  <div className={styles.community__socialInfo}>
-                    <h4 className={styles.community__socialName}>
-                      📌 {link.name}
-                    </h4>
-                    {link.isQQ ? (
+                link.isQQ ? (
+                  <motion.div
+                    key={`social-${index}`}
+                    className={styles.community__socialCard}
+                    variants={ANIMATION_VARIANTS.scaleIn}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => {
+                      navigator.clipboard.writeText(link.url);
+                      alert(`QQ群号 ${link.url} 已复制到剪贴板`);
+                    }}
+                  >
+                    <div className={styles.community__socialIconWrapper}>
+                      {getIcon(link.icon)}
+                    </div>
+                    <div className={styles.community__socialInfo}>
+                      <h4 className={styles.community__socialName}>
+                        📌 {link.name}
+                      </h4>
                       <p className={styles.community__socialUrl}>
                         QQ群号：{link.url}
                       </p>
-                    ) : (
-                      <a 
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.community__socialLink}
-                      >
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.a
+                    key={`social-${index}`}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.community__socialCard}
+                    variants={ANIMATION_VARIANTS.scaleIn}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    <div className={styles.community__socialIconWrapper}>
+                      {getIcon(link.icon)}
+                    </div>
+                    <div className={styles.community__socialInfo}>
+                      <h4 className={styles.community__socialName}>
+                        📌 {link.name}
+                      </h4>
+                      <p className={styles.community__socialUrl}>
                         {link.url}
-                      </a>
-                    )}
-                  </div>
-                </motion.div>
+                      </p>
+                    </div>
+                  </motion.a>
+                )
               ))}
             </div>
           </motion.div>
