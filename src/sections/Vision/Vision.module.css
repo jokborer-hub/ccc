@@ -1,0 +1,638 @@
+/* Vision Section Styles - Web3.0 愿景板块 */
+
+.vision {
+  position: relative;
+  padding: 8rem 0;
+  background: linear-gradient(
+    135deg,
+    #0F172A 0%,
+    #1E293B 25%,
+    #334155 50%,
+    #1E293B 75%,
+    #0F172A 100%
+  );
+  overflow: hidden;
+  color: white;
+}
+
+/* 背景装饰 */
+.vision__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.vision__backgroundPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+  animation: patternFloat 20s ease-in-out infinite;
+}
+
+.vision__backgroundGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(245, 158, 11, 0.03) 25%,
+    transparent 50%,
+    rgba(245, 158, 11, 0.05) 75%,
+    transparent 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease-in-out infinite;
+}
+
+@keyframes patternFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* 粒子效果 */
+.vision__particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.vision__particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #F59E0B 0%, transparent 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+/* 容器 */
+.vision__container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* 标题区域 */
+.vision__header {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+
+.vision__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+}
+
+.vision__badgeIcon {
+  font-size: 1.25rem;
+  animation: rotate 8s linear infinite;
+}
+
+.vision__badgeText {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #FCD34D;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.vision__title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FCD34D 25%, #F59E0B 50%, #D97706 75%, #B45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  text-align: center;
+  filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3));
+}
+
+.vision__subtitle {
+  font-size: 1.5rem;
+  color: rgba(248, 250, 252, 0.9);
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 时间线 */
+.vision__timeline {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6));
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.vision__timelineItem {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vision__timelineDate {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #F59E0B;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.vision__timelineEvent {
+  font-size: 1.1rem;
+  color: rgba(248, 250, 252, 0.9);
+  line-height: 1.7;
+}
+
+/* 内容区域 */
+.vision__content {
+  position: relative;
+}
+
+/* 章节样式 */
+.vision__section {
+  position: relative;
+  margin-bottom: 4rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.4));
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+}
+
+.vision__section:hover {
+  transform: translateY(-5px);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(245, 158, 11, 0.2);
+}
+
+/* 章节头部 */
+.vision__sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.vision__sectionNumber {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+  position: relative;
+  cursor: pointer;
+}
+
+.vision__sectionNumber::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(135deg, #F59E0B, #D97706, #F59E0B);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.vision__section:hover .vision__sectionNumber::before {
+  opacity: 0.6;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.vision__sectionTitleWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vision__sectionIcon {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vision__sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #FCD34D;
+  line-height: 1.3;
+}
+
+.vision__sectionStats {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vision__sectionStats:hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.vision__statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #F59E0B;
+  margin-bottom: 0.25rem;
+}
+
+.vision__statLabel {
+  font-size: 0.875rem;
+  color: rgba(248, 250, 252, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 章节内容 */
+.vision__sectionContent {
+  position: relative;
+}
+
+.vision__paragraph {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(248, 250, 252, 0.9);
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.vision__paragraph:last-of-type {
+  margin-bottom: 2rem;
+}
+
+/* 特性列表 */
+.vision__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.vision__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(245, 158, 11, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.vision__feature:hover {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.4);
+  transform: translateY(-3px);
+}
+
+.vision__featureIcon {
+  width: 8px;
+  height: 8px;
+  background: #F59E0B;
+  border-radius: 50%;
+  margin-top: 0.75rem;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.vision__featureContent {
+  flex: 1;
+}
+
+.vision__featureName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #FCD34D;
+  margin-bottom: 0.5rem;
+}
+
+.vision__featureDesc {
+  font-size: 1rem;
+  color: rgba(248, 250, 252, 0.8);
+  line-height: 1.6;
+}
+
+/* 亮点标签 */
+.vision__highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 2rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vision__highlight:hover {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.2));
+  border-color: rgba(245, 158, 11, 0.6);
+  transform: scale(1.05);
+}
+
+.vision__highlightIcon {
+  font-size: 1rem;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.vision__highlightText {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #FCD34D;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* 连接线 */
+.vision__connector {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 2rem;
+  background: linear-gradient(180deg, 
+    rgba(245, 158, 11, 0.6) 0%, 
+    rgba(245, 158, 11, 0.3) 50%, 
+    transparent 100%);
+  transform-origin: top;
+}
+
+/* 底部总结 */
+.vision__conclusion {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.vision__conclusionContent {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6));
+  border: 2px solid rgba(245, 158, 11, 0.3);
+  border-radius: 2rem;
+  padding: 4rem 3rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.vision__conclusionContent::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    #F59E0B, #FCD34D, #F59E0B, #D97706, 
+    #F59E0B, #FCD34D, #F59E0B);
+  background-size: 400% 400%;
+  border-radius: 2rem;
+  z-index: -1;
+  animation: borderGlow 8s ease infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.vision__conclusionIcon {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.vision__conclusionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FCD34D 25%, #F59E0B 50%, #D97706 75%, #B45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+.vision__conclusionText {
+  font-size: 1.25rem;
+  color: rgba(248, 250, 252, 0.9);
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .vision {
+    padding: 6rem 0;
+  }
+  
+  .vision__title {
+    font-size: 3rem;
+  }
+  
+  .vision__subtitle {
+    font-size: 1.3rem;
+  }
+  
+  .vision__section {
+    padding: 2.5rem;
+  }
+  
+  .vision__sectionHeader {
+    gap: 1.5rem;
+  }
+  
+  .vision__sectionNumber {
+    width: 70px;
+    height: 70px;
+    font-size: 1.3rem;
+  }
+  
+  .vision__sectionTitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .vision {
+    padding: 4rem 0;
+  }
+  
+  .vision__container {
+    padding: 0 1.5rem;
+  }
+  
+  .vision__header {
+    margin-bottom: 4rem;
+  }
+  
+  .vision__title {
+    font-size: 2.5rem;
+  }
+  
+  .vision__subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .vision__timeline {
+    padding: 1.5rem;
+  }
+  
+  .vision__section {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .vision__sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .vision__sectionTitleWrapper {
+    width: 100%;
+  }
+  
+  .vision__sectionStats {
+    align-self: flex-end;
+  }
+  
+  .vision__features {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .vision__feature {
+    padding: 1.25rem;
+  }
+  
+  .vision__conclusionContent {
+    padding: 3rem 2rem;
+  }
+  
+  .vision__conclusionTitle {
+    font-size: 2rem;
+  }
+  
+  .vision__conclusionText {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vision__container {
+    padding: 0 1rem;
+  }
+  
+  .vision__title {
+    font-size: 2rem;
+  }
+  
+  .vision__subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .vision__section {
+    padding: 1.5rem;
+  }
+  
+  .vision__sectionNumber {
+    width: 60px;
+    height: 60px;
+    font-size: 1.1rem;
+  }
+  
+  .vision__sectionTitle {
+    font-size: 1.3rem;
+  }
+  
+  .vision__paragraph {
+    font-size: 1rem;
+  }
+  
+  .vision__conclusionContent {
+    padding: 2rem 1.5rem;
+  }
+  
+  .vision__conclusionIcon {
+    font-size: 3rem;
+  }
+  
+  .vision__conclusionTitle {
+    font-size: 1.75rem;
+  }
+  
+  .vision__conclusionText {
+    font-size: 1rem;
+  }
+}

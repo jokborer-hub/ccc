@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero/Hero";
 import About from "@/sections/About/About";
+import Vision from "@/sections/Vision/Vision";
 import AlphaNode from "@/sections/AlphaNode/AlphaNode";
 import Tokenomics from "@/sections/Tokenomics/Tokenomics";
 import Community from "@/sections/Community/Community";
@@ -11,6 +12,7 @@ export default function Home() {
     <main>
         <Hero />
         <About />
+        <Vision />
         <AlphaNode />
         <Tokenomics />
         <Community />
