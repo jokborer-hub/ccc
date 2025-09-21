@@ -131,11 +131,7 @@ const Vision: React.FC<VisionProps> = ({ className = '' }) => {
 
       {/* 增强粒子效果 */}
       <div className={styles.vision__particles}>
-        {[...Array(20)].map((_, i) => {
-          const particleY = useTransform(scrollYProgress, [0, 1], [0, -100 - i * 10]);
-          const particleOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 0.8, 0.8, 0]);
-          
-          return (
+        {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
               className={styles.vision__particle}
@@ -152,12 +148,9 @@ const Vision: React.FC<VisionProps> = ({ className = '' }) => {
               style={{
                 left: `${5 + (i * 4.5)}%`,
                 top: `${10 + (i % 4) * 25}%`,
-                y: particleY,
-                opacity: particleOpacity
               }}
             />
-          );
-        })}
+        ))}
       </div>
 
       <div className={styles.vision__container}>
